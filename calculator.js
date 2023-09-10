@@ -54,7 +54,7 @@ let sum = 0;
 buttons.forEach(button => {
     button.addEventListener('click', () => {
 
-        if (sum === 0){
+        if (sum === 0 && button.value !== '='){
             if(button.value === 'Clear'){
                 toEnableButtons();
                 displayValue.textContent = '';
@@ -62,11 +62,11 @@ buttons.forEach(button => {
                 secondNum = '';
                 operator = '';
                 return;
-            }if (isNaN(button.value) && button.value !== 'Clear'){
+            } 
+            if (button.value === '+' || button.value === '-' || button.value === '*' || button.value === '/'){
                 toEnableButtons();
                 displayValue.textContent += button.value;
                 operator = button.value;
-                console.log(operator); ///////////
                 sum = 1;
                 return;
             }
@@ -76,7 +76,6 @@ buttons.forEach(button => {
             }
             displayValue.textContent += button.value;
             firstNum += button.value;
-            console.log(firstNum); //////
         } 
         if(button.value === 'Clear'){
             toEnableButtons();
@@ -98,30 +97,30 @@ buttons.forEach(button => {
             } 
             if(button.value === "="){
                 toEnableButtons();
-                console.log(operate(firstNum, operator, secondNum));
-
+                
                 displayValue.textContent = 
                 operate(firstNum, operator, secondNum);
 
                 firstNum = operate(firstNum, operator, secondNum);
                 secondNum = '';
-
-                console.log(firstNum);
-                console.log(secondNum);
-
-            } if(isNaN(button.value) && button.value !== "="){
+                return;
+            }
+            } if((button.value === '+' || button.value === '-' || button.value === '*' || button.value === '/') && secondNum === ""){
                 toEnableButtons();
-                console.log(operate(firstNum, operator, secondNum));
+                
+                displayValue.textContent = firstNum + button.value;
+                operator = button.value;
+                return;
+
+            } if(button.value === '+' || button.value === '-' || button.value === '*' || button.value === '/'){
+                toEnableButtons();
 
                 displayValue.textContent = 
                 operate(firstNum, operator, secondNum) + button.value;
 
                 firstNum = operate(firstNum, operator, secondNum);
-
                 operator = button.value;
                 secondNum = '';
-                console.log(firstNum);
-                console.log(secondNum);
                 return;
             }
             if(isNaN(button.value) === false){
@@ -137,16 +136,15 @@ buttons.forEach(button => {
 
 function operate(firstNum, operator, secondNum){
     if (operator === '+'){
-        return (add(+firstNum, +secondNum));
+        return +(add(+firstNum, +secondNum)).toFixed(2);
     }
     if (operator === '-'){
-        return (subtract(+firstNum, +secondNum));
+        return +(subtract(+firstNum, +secondNum)).toFixed(2);
     }
     if (operator === '*'){
-        return (multiply(+firstNum, +secondNum));
+        return +(multiply(+firstNum, +secondNum)).toFixed(2);
     }
     if (operator === '/'){
-        return (divide(+firstNum, +secondNum));
+        return +(divide(+firstNum, +secondNum)).toFixed(2);
     }
 }
-
