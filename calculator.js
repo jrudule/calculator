@@ -112,14 +112,15 @@ buttons.forEach(button => {
                 secondNum = '';
                 return;
             }
-            } if((button.value === '+' || button.value === '-' || button.value === '*' || button.value === '/') && secondNum === ""){
+             if((button.value === '+' || button.value === '-' || button.value === '*' || button.value === '/') && secondNum === ""){
                 toEnableButtons();
                 
                 displayValue.textContent = firstNum + button.value;
                 operator = button.value;
                 return;
 
-            } if(button.value === '+' || button.value === '-' || button.value === '*' || button.value === '/'){
+            } 
+            if(button.value === '+' || button.value === '-' || button.value === '*' || button.value === '/'){
                 toEnableButtons();
 
                 displayValue.textContent = 
@@ -138,7 +139,6 @@ buttons.forEach(button => {
                 secondNum += button.value;
             }
         }
-     });
 });
 
 
