@@ -5,7 +5,7 @@ const displayValue = document.querySelector('.displayValue');
 let firstNum = '';
 let operator;
 let secondNum = '';
-
+let error = 0;
 
 function add(a, b){
     return a + b;
@@ -20,6 +20,10 @@ function multiply(a, b){
 }
 
 function divide(a, b){
+    if(b === 0){
+        displayValue.textContent = 'Error';
+        toOnlyClear();
+    }
     return a / b;
 }
 
