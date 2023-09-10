@@ -45,9 +45,11 @@ function toEnableButtons(){
 }
 
 function toBackspace(){
-    if(button.value === 'Backspace'){
-        displayValue.textContent = displayValue.textContent.slice(0, -1);
-    }
+    buttons.forEach((button) => {
+        if(button.value === 'Backspace'){
+            displayValue.textContent = displayValue.textContent.slice(0, -1);
+        }
+    });
 }
 
 let sum = 0;
@@ -74,8 +76,13 @@ buttons.forEach(button => {
                 firstNum = firstNum.slice(0, -1);
                 toBackspace();
             }
+             if(isNaN(button.value) === false || button.value === '.'){
+                if(button.value === '.'){
+                    button.disabled = true;
+                }
             displayValue.textContent += button.value;
             firstNum += button.value;
+            }
         } 
         if(button.value === 'Clear'){
             toEnableButtons();
@@ -123,11 +130,12 @@ buttons.forEach(button => {
                 secondNum = '';
                 return;
             }
-            if(isNaN(button.value) === false){
-                displayValue.textContent += button.value;
+            if(isNaN(button.value) === false || button.value === '.'){
+                if(button.value === '.'){
+                    button.disabled = true;
+                }
+                displayValue.textContent += button.value;                
                 secondNum += button.value;
-                console.log(secondNum); ////////////
-                console.log(sum);
             }
         }
      });
