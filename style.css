@@ -1,0 +1,56 @@
+*{
+    font-size: 1.7rem;
+    border-radius: 3px;
+}
+body{
+    overflow:auto;
+    background-color: rgb(192, 166, 217);
+}
+.container{
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    position: absolute;
+    width: 15rem;
+    left: 50%;
+    display: flex;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    border: 5px solid black;
+    padding: 5px;
+    background-color: rgb(186, 63, 149);
+}
+.container div{
+    flex: 1;
+    display: flex;
+}
+button{
+    width: 95px;
+    height: 95px;
+    text-align: center;
+    margin: 0;
+    background-color: rgb(205, 164, 243);
+}
+div.displayValue{
+    border: 3px solid rgb(48, 8, 209);
+    width: 93%;
+    min-height: 1.4em;
+    flex: 1;
+    margin: 10px;
+    padding: 4px;
+    align-items: center;
+    background-color: rgb(184, 168, 249);
+    color: #ffffff;
+}
+div.calcButtons{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+button.Clear{
+    flex: 2;
+    color: #ffffff;
+}
