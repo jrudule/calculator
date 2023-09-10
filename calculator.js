@@ -53,7 +53,7 @@ function toBackspace(){
 }
 
 let sum = 0;
-buttons.forEach(button => {
+buttons.forEach((button) => {
     button.addEventListener('click', () => {
 
         if (sum === 0 && button.value !== '='){
@@ -139,6 +139,7 @@ buttons.forEach(button => {
                 secondNum += button.value;
             }
         }
+    });
 });
 
 
