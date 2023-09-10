@@ -23,34 +23,77 @@ function divide(a, b){
     return a / b;
 }
 
+function toOnlyClear(){
+    buttons.forEach((button) => {
+        button.disabled = true;
+        if(button.value === 'Clear'){
+            button.disabled = false;
+        }
+        displayValue.style.color = 'red';
+    });
+}
+
+function toEnableButtons(){
+    buttons.forEach((button) => {
+        button.disabled = false;
+        displayValue.style.color = 'black';
+    });
+}
+
+function toBackspace(){
+    if(button.value === 'Backspace'){
+        displayValue.textContent = displayValue.textContent.slice(0, -1);
+    }
+}
+
 let sum = 0;
 buttons.forEach(button => {
     button.addEventListener('click', () => {
+
         if (sum === 0){
             if(button.value === 'Clear'){
+                toEnableButtons();
                 displayValue.textContent = '';
                 firstNum = '';
                 secondNum = '';
                 operator = '';
                 return;
             }if (isNaN(button.value) && button.value !== 'Clear'){
+                toEnableButtons();
                 displayValue.textContent += button.value;
                 operator = button.value;
                 console.log(operator); ///////////
                 sum = 1;
                 return;
             }
+            if(button.value === 'Backspace'){
+                firstNum = firstNum.slice(0, -1);
+                toBackspace();
+            }
             displayValue.textContent += button.value;
             firstNum += button.value;
             console.log(firstNum); //////
-        } if(button.value === 'Clear'){
+        } 
+        if(button.value === 'Clear'){
+            toEnableButtons();
             displayValue.textContent = '';
             firstNum = '';
             secondNum = '';
             operator = '';
             sum = 0;
-        } if(sum === 1){
+        } 
+        if(sum === 1){
+            if(button.value === 'Backspace'){
+                if(displayValue.textContent.search(/\+|\-|\*|\//)){
+                    operator = operator.slice(0, -1);
+                    toBackspace();
+                } else{
+                    secondNum = secondNum.slice(0, -1);
+                    toBackspace();
+                }
+            } 
             if(button.value === "="){
+                toEnableButtons();
                 console.log(operate(firstNum, operator, secondNum));
 
                 displayValue.textContent = 
@@ -63,6 +106,7 @@ buttons.forEach(button => {
                 console.log(secondNum);
 
             } if(isNaN(button.value) && button.value !== "="){
+                toEnableButtons();
                 console.log(operate(firstNum, operator, secondNum));
 
                 displayValue.textContent = 
